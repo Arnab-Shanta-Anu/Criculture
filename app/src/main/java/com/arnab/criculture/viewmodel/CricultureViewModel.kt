@@ -24,9 +24,9 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
         getAllPlayers()
     }
 
-    fun getAllPlayers() {
+    private fun getAllPlayers() {
         viewModelScope.launch(Dispatchers.IO) {
-            _allTeams.postValue(SportMonksApi.retrofitService.getAllTeams())
+            _allTeams.postValue(cricultureRepository.getAllTeams())
             Log.d("TEST", "getAllPlayers: ${allTeams.value?.data?.size}")
             allTeams.value?.data?.forEach{
                 Log.d("TEST", "getAllPlayers: ${it.name}\n\n")

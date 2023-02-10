@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.allTeams.observe(this){
             recyclerView.adapter = RecyclerViewAdapter(this,it.data)
-            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         }
 
     }
