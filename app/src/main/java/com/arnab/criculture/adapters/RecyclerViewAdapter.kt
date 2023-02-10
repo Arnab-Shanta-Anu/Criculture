@@ -8,12 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
+import com.arnab.criculture.models.fixtures.UpcomingMatch
+import com.arnab.criculture.models.fixtures.UpcomingMatchDetails
 import com.arnab.criculture.models.teams.TeamData
 import com.bumptech.glide.Glide
 
 class RecyclerViewAdapter(
     private val context: Context,
-    private val teamDataSet: List<TeamData>
+    private val teamDataSet: List<UpcomingMatchDetails>
 ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,11 +31,12 @@ class RecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = teamDataSet.get(position)
-        Glide.with(context)
+        /*Glide.with(context)
             .load(item.image_path)
             .override(150,150)
             .into(holder.countryImgView)
-        holder.countryNameTV.text = item.name
+        holder.countryNameTV.text = item.name*/
+        holder.countryNameTV.text = item.starting_at
     }
 
     override fun getItemCount(): Int {

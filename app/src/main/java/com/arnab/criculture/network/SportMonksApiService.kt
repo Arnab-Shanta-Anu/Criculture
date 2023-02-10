@@ -1,5 +1,6 @@
 package com.arnab.criculture.network
 
+import com.arnab.criculture.models.fixtures.UpcomingMatch
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.utils.Constants
 import com.squareup.moshi.Moshi
@@ -20,6 +21,8 @@ private val retrofit = Retrofit.Builder()
 interface SportMonksApiService {
     @GET(Constants.ALL_TEAM_QUERY)
     suspend fun getAllTeams() : Team
+    @GET(Constants.UPCOMING_MATCHES_QUERY)
+    suspend fun getUpcomingMatches(): UpcomingMatch
 }
 
 object SportMonksApi{
