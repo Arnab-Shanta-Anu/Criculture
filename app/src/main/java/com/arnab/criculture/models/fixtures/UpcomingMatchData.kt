@@ -2,7 +2,7 @@ package com.arnab.criculture.models.fixtures
 
 import com.arnab.criculture.models.TeamDlData
 
-data class UpcomingMatchDetails(
+data class UpcomingMatchData(
     val draw_noresult: Any?,
     val elected: Any?,
     val first_umpire_id: Any?,
