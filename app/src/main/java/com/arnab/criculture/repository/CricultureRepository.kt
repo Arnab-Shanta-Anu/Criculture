@@ -1,13 +1,16 @@
 package com.arnab.criculture.repository
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.arnab.criculture.db.dao.ICricultureDao
-import com.arnab.criculture.models.fixtures.UpcomingMatch
+import com.arnab.criculture.models.fixtures.FixtureWithLineUpandTeams
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.models.teams.TeamData
 import com.arnab.criculture.network.SportMonksApi
 
 class CricultureRepository(private val cricultureDao: ICricultureDao) {
+    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun getAllTeamsFromApi(): Team? {
         var team: Team? = null
         try {
@@ -18,8 +21,9 @@ class CricultureRepository(private val cricultureDao: ICricultureDao) {
         return team
     }
 
-    suspend fun getUpcomingMatchesFromApi(): UpcomingMatch? {
-        var upcomingMatches: UpcomingMatch? = null
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getUpcomingMatchesFromApi(): FixtureWithLineUpandTeams? {
+        var upcomingMatches: FixtureWithLineUpandTeams? = null
         try {
             upcomingMatches = SportMonksApi.retrofitService.getUpcomingMatches()
         } catch (e: Exception) {
@@ -28,6 +32,7 @@ class CricultureRepository(private val cricultureDao: ICricultureDao) {
         return upcomingMatches
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun getTeamByIdFromApi(id: Int): Team {
         return SportMonksApi.retrofitService.getTeamByID(id)
     }
@@ -36,7 +41,7 @@ class CricultureRepository(private val cricultureDao: ICricultureDao) {
         cricultureDao.addTeam(teamData)
     }
 
-    suspend fun getTeamById(id: Int): TeamData{
+    suspend fun getTeamById(id: Int): TeamData {
         return cricultureDao.getTeamById(id)
     }
 }

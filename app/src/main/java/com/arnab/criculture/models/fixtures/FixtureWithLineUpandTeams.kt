@@ -1,7 +1,7 @@
 package com.arnab.criculture.models.fixtures
 
-data class UpcomingMatch(
-    val `data`: List<UpcomingMatchData>,
+data class FixtureWithLineUpandTeams(
+    val `data`: List<FixtureData>,
     val links: Links,
     val meta: Meta
 )

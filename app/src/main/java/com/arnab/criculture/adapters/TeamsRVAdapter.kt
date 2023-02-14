@@ -17,7 +17,7 @@ class TeamsRVAdapter(
 ) : RecyclerView.Adapter<TeamsRVAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val countryImgView: ImageView = itemView.findViewById(R.id.country_flag_IMGView)
+        val countryImgView: ImageView = itemView.findViewById(R.id.country_flag_IV)
         val countryNameTV: TextView = itemView.findViewById(R.id.country_name_TV)
     }
 

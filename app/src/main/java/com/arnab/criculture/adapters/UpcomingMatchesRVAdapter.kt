@@ -1,21 +1,22 @@
 package com.arnab.criculture.adapters
 
 import android.content.Context
-import android.util.Log
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
-import com.arnab.criculture.models.fixtures.UpcomingMatchData
+import com.arnab.criculture.models.fixtures.FixtureData
 import com.arnab.criculture.viewmodel.CricultureViewModel
 import com.bumptech.glide.Glide
 
 class UpcomingMatchesRVAdapter(
     private val context: Context,
-    private val dataSet: List<UpcomingMatchData>,
+    private val dataSet: List<FixtureData>,
     private val viewModel: CricultureViewModel
 ) : RecyclerView.Adapter<UpcomingMatchesRVAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,35 +32,18 @@ class UpcomingMatchesRVAdapter(
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataSet[position]
-       // Log.d( "onBindViewHolder: local", item.localteam_id.toString())
-       // Log.d( "onBindViewHolder: visit", item.visitorteam_id.toString())
-        val team1 = item.localteam_id?.let {
-            viewModel.getTeamById(it)
-           // Log.d("onBindViewHolder: local",viewModel.getTeamById(it).toString())
-            //Log.d("onBindViewHolder: local",viewModel.getTeamById(it).toString())
-        }
-        val team2 = item.visitorteam_id?.let {
-            viewModel.getTeamById(it)
-            //Log.d("onBindViewHolder: visit",viewModel.getTeamById(it).toString())
-        }
-
-        Log.d(
-            "TEST",
-            """onBindViewHolder: localteamid: ${item.localteam_id} visitorteamid: ${item.visitorteam_id}
-                                                                team1Id: ${team1} team2Id: ${team2}
-        """.trimMargin()
-        )
 
         Glide.with(context)
-            .load(team1?.image_path)
-            .override(150, 150)
+            .load(item.localteam.image_path)
+            .override(300, 300)
             .into(holder.team1Img)
 
         Glide.with(context)
-            .load(team2?.image_path)
-            .override(150, 150)
+            .load(item.visitorteam.image_path)
+            .override(300, 300)
             .into(holder.team2Img)
 
         holder.timeAndDate.text = item.starting_at

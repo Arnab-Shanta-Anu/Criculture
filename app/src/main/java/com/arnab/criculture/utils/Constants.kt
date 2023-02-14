@@ -17,12 +17,11 @@ class Constants {
 
         const val BASE_URL = "https://cricket.sportmonks.com/api/v2.0/"
         const val API_TOKEN = "hg1DScD5eIMTkHGuBR0yW8nd7MubIt5UohYrAbhLycOJX3bk9a3TY9X889lk"
-        const val ALL_PLAYER_QUERY = "players?api_token=${API_TOKEN}"
         const val ALL_TEAM_QUERY =
             "teams?api_token=${API_TOKEN}"
-        const val ALL_FIXTURE_QUERY = "fixtures?api_token=${API_TOKEN}"
         const val LIVE_SCORE_QUERY = "livescores?api_token=${API_TOKEN}"
         const val UPCOMING_MATCHES_QUERY =
-            "fixtures?filter[starts_between]=2023-02-01,2023-02-28&api_token=${API_TOKEN}"
+            "fixtures?filter[starts_between]=2023-02-14,2023-02-28&include=visitorteam,localteam,lineup" +
+                    "&api_token=${API_TOKEN}"
     }
 }

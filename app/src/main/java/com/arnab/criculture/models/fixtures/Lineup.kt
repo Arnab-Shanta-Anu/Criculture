@@ -1,6 +1,8 @@
-package com.arnab.criculture.models.players
+package com.arnab.criculture.models.fixtures
 
-data class Data(
+import com.arnab.criculture.models.Position
+
+data class Lineup(
     val battingstyle: String,
     val bowlingstyle: String,
     val country_id: Int,
@@ -11,6 +13,7 @@ data class Data(
     val id: Int,
     val image_path: String,
     val lastname: String,
+    val lineup: LineupX,
     val position: Position,
     val resource: String,
     val updated_at: String

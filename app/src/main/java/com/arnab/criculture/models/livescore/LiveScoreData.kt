@@ -2,7 +2,7 @@ package com.arnab.criculture.models.livescore
 
 import com.arnab.criculture.models.TeamDlData
 
-data class Data(
+data class LiveScoreData(
     val draw_noresult: Any,
     val elected: String,
     val first_umpire_id: Int,

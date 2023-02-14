@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(findViewById(R.id.custom_appbar))
+
         //check network
         if (checkNetwork(this))
             network = true
@@ -31,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(
                 findViewById(R.id.fragmentContainerView),
                 "please connect to network",
-                Snackbar.LENGTH_LONG
+                Snackbar.LENGTH_INDEFINITE
             ).show()
         }
 
@@ -41,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
+        //setupActionBarWithNavController(navController)
         val bottomNav: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.fragmentContainerView).navigate(R.id.fixtureFragment)
                 }
                 R.id.bottom_nav_more -> {
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.recentFragment)
+                    findNavController(R.id.fragmentContainerView).navigate(R.id.moreFragment)
                 }
             }
             true
@@ -66,25 +70,15 @@ class MainActivity : AppCompatActivity() {
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val network = connectivityManager.activeNetwork ?: return false
-
-            // Representation of the capabilities of an active network.
             val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
             return when {
-                // Indicates this network uses a Wi-Fi transport,
-                // or WiFi has network connectivity
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-
-                // Indicates this network uses a Cellular transport. or
-                // Cellular has network connectivity
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-
-                // else return false
                 else -> false
             }
         } else {
-            // if the android version is below M
-            @Suppress("DEPRECATION") val networkInfo =
-                connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
             @Suppress("DEPRECATION")
             return networkInfo.isConnected
         }

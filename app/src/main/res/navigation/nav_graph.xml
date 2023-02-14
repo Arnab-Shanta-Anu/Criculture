@@ -24,5 +24,14 @@
         android:id="@+id/moreFragment"
         android:name="com.arnab.criculture.ui.MoreFragment"
         android:label="fragment_more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_playersFragment"
+            app:destination="@id/playersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playersFragment"
+        android:name="com.arnab.criculture.ui.PlayersFragment"
+        android:label="fragment_players"
+        tools:layout="@layout/fragment_players" />
 </navigation>
