@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide
 class UpcomingMatchesRVAdapter(
     private val context: Context,
     private val dataSet: List<FixtureData>,
-    private val viewModel: CricultureViewModel
 ) : RecyclerView.Adapter<UpcomingMatchesRVAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val team1Img: ImageView = itemView.findViewById(R.id.team_1_IV)

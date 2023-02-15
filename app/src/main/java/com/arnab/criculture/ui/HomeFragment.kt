@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
         viewModel.upcomingMatches.observe(viewLifecycleOwner) {
             it?.let {
                 upcomingMatchesRecyclerView.adapter =
-                    UpcomingMatchesRVAdapter(requireContext(), it.data, viewModel)
+                    UpcomingMatchesRVAdapter(requireContext(), it.data)
             }
             upcomingMatchesRecyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

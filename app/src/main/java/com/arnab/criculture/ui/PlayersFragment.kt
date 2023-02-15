@@ -2,6 +2,7 @@ package com.arnab.criculture.ui
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.adapters.PlayersRVAdapter
+import com.arnab.criculture.adapters.UpcomingMatchesRVAdapter
 import com.arnab.criculture.models.fixtures.Lineup
 import com.arnab.criculture.viewmodel.CricultureViewModel
+import kotlinx.coroutines.delay
 
 class PlayersFragment() : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,14 +41,14 @@ class PlayersFragment() : Fragment() {
 
         val playersListRecyclerView: RecyclerView = view.findViewById(R.id.players_list_RV)
         val viewModel = ViewModelProvider(this)[CricultureViewModel::class.java]
-        val playersList = mutableListOf<Lineup>()
-        viewModel.upcomingMatches.observe(viewLifecycleOwner){
-            it.data.forEach {
-                playersList.addAll(it.lineup)
+
+        viewModel.upcomingMatches.observe(viewLifecycleOwner) {
+            it?.let {
+                if (it.data[0].lineup.size>=22){
+                playersListRecyclerView.adapter =
+                    PlayersRVAdapter(requireContext(), it.data[0].lineup)}
             }
-            playersListRecyclerView.adapter = PlayersRVAdapter(requireContext(),playersList)
             playersListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
-
     }
 }

@@ -1,6 +1,7 @@
 package com.arnab.criculture.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.arnab.criculture.models.fixtures.FixtureData
 import com.arnab.criculture.models.fixtures.Lineup
 import com.bumptech.glide.Glide
 
+private const val TAG = "PlayersRVAdapter"
 class PlayersRVAdapter(
     private val context: Context,
     private val dataSet: List<Lineup>
@@ -27,11 +29,12 @@ class PlayersRVAdapter(
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataSet[position]
-        Glide.with(context)
+        Log.d(TAG, "onBindViewHolder: Item - ${item.country_id}")
+        /*Glide.with(context)
             .load(item.image_path)
             .override(150,150)
             .into(holder.playerImage)
-        holder.playerName.text = item.fullname
+        holder.playerName.text = item.fullname*/
     }
     override fun getItemCount(): Int {
         return dataSet.size

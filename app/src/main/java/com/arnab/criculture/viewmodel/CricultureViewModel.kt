@@ -9,13 +9,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.arnab.criculture.db.CricultureDatabase
 import com.arnab.criculture.models.fixtures.FixtureWithLineUpandTeams
+import com.arnab.criculture.models.fixtures.Lineup
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.models.teams.TeamData
 import com.arnab.criculture.repository.CricultureRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.concurrent.CancellationException
 
+private const val TAG = "tag"
 @RequiresApi(Build.VERSION_CODES.O)
 class CricultureViewModel(application: Application) : AndroidViewModel(application) {
     private val _allTeams = MutableLiveData<Team>()
@@ -24,23 +27,25 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
     private val _upcomingMatches = MutableLiveData<FixtureWithLineUpandTeams>()
     val upcomingMatches = _upcomingMatches
 
-    private val _team = MutableLiveData<TeamData?>()
-
-    val cricultureRepository: CricultureRepository
+    private val cricultureRepository: CricultureRepository
 
     init {
+        Log.d(TAG, "viewmodel init called")
         val cricultureDao = CricultureDatabase.getDatabaseInstance(application).cricultureDao()
         cricultureRepository = CricultureRepository(cricultureDao)
-        getAllTeams()
         getUpcomingMatches()
+        getAllTeams()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getUpcomingMatches() {
+        Log.d("TEST", "getUpcomingMatches: Executing getUpcomingMatches")
         viewModelScope.launch(Dispatchers.IO) {
             _upcomingMatches.postValue(cricultureRepository.getUpcomingMatchesFromApi())
+            delay(1000)
+            Log.d(TAG, "getUpcomingMatches: Upcoming Matches: ${_upcomingMatches.value?.data?.size}")
         }
-        upcomingMatches.value?.data?.forEach {
+        upcomingMatches.value?.data?.get(0)?.lineup?.forEach {
             Log.d("TEST", "getUpcomingMatches: $it")
         }
     }
@@ -49,7 +54,7 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _allTeams.postValue(cricultureRepository.getAllTeamsFromApi())
-                Log.d("TEST", "getAllPlayers: ${allTeams.value?.data?.size}")
+                Log.d("TEST", "getAllTeams: ${allTeams.value?.data?.size}")
                 allTeams.value?.data?.forEach {
 //                Log.d("TEST", "getAllPlayers: ${it.name}\n\n")
                     addTeam(it)
@@ -60,13 +65,6 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-    /*fun getTeamByIdFromApi(id: Int): TeamData? {
-        viewModelScope.launch(Dispatchers.IO) {
-            _team.postValue(cricultureRepository.getTeamByIdFromApi(id))
-        }
-        return _team.value
-    }*/
-
     private fun addTeam(teamData: TeamData) {
         viewModelScope.launch {
             try {
@@ -75,12 +73,5 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
                 Log.e("TEST", "addTeam: Error: $e")
             }
         }
-    }
-
-    fun getTeamById(id: Int): TeamData? {
-        viewModelScope.launch(Dispatchers.IO) {
-            _team.postValue(cricultureRepository.getTeamById(id))
-        }
-        return _team.value
     }
 }
