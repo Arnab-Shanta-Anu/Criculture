@@ -29,12 +29,11 @@ class PlayersRVAdapter(
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataSet[position]
-        Log.d(TAG, "onBindViewHolder: Item - ${item.country_id}")
-        /*Glide.with(context)
+        Glide.with(context)
             .load(item.image_path)
             .override(150,150)
             .into(holder.playerImage)
-        holder.playerName.text = item.fullname*/
+        holder.playerName.text = item.fullname
     }
     override fun getItemCount(): Int {
         return dataSet.size

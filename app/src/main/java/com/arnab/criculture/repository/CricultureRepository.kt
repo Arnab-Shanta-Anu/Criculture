@@ -4,6 +4,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.arnab.criculture.db.dao.ICricultureDao
+import com.arnab.criculture.models.Ranking.Ranking
 import com.arnab.criculture.models.fixtures.FixtureWithLineUpandTeams
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.models.teams.TeamData
@@ -33,8 +34,44 @@ class CricultureRepository(private val cricultureDao: ICricultureDao) {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun getTeamByIdFromApi(id: Int): Team {
-        return SportMonksApi.retrofitService.getTeamByID(id)
+    suspend fun getRecentMatchesFromApi(): FixtureWithLineUpandTeams? {
+        var upcomingMatches: FixtureWithLineUpandTeams? = null
+        try {
+            upcomingMatches = SportMonksApi.retrofitService.getRecentMatches()
+        } catch (e: Exception) {
+            Log.e("TEST", "getRecentMatchesFromApi: $e")
+        }
+        return upcomingMatches
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getTestRankingMenFromApi(): Ranking {
+        return SportMonksApi.retrofitService.getTestRankingMen()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getOdiRankingMenFromApi(): Ranking {
+        return SportMonksApi.retrofitService.getOdiRankingMen()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getT20RankingMenFromApi(): Ranking {
+        return SportMonksApi.retrofitService.getT20RankingMen()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getTestRankingWomenFromApi(): Ranking {
+        return SportMonksApi.retrofitService.getTestRankingWomen()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getOdiRankingWomenFromApi(): Ranking {
+        return SportMonksApi.retrofitService.getOdiRankingWomen()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getT20RankingWomenFromApi(): Ranking {
+        return SportMonksApi.retrofitService.getT20RankingWomen()
     }
 
     suspend fun addTeam(teamData: TeamData) {

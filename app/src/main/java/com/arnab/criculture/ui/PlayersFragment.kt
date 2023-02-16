@@ -6,8 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,10 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.adapters.PlayersRVAdapter
-import com.arnab.criculture.adapters.UpcomingMatchesRVAdapter
 import com.arnab.criculture.models.fixtures.Lineup
 import com.arnab.criculture.viewmodel.CricultureViewModel
-import kotlinx.coroutines.delay
+
+private const val TAG = "PlayersFragment"
 
 class PlayersFragment() : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,14 +39,20 @@ class PlayersFragment() : Fragment() {
 
         val playersListRecyclerView: RecyclerView = view.findViewById(R.id.players_list_RV)
         val viewModel = ViewModelProvider(this)[CricultureViewModel::class.java]
-
-        viewModel.upcomingMatches.observe(viewLifecycleOwner) {
-            it?.let {
-                if (it.data[0].lineup.size>=22){
-                playersListRecyclerView.adapter =
-                    PlayersRVAdapter(requireContext(), it.data[0].lineup)}
+        val playerList = mutableSetOf<Lineup>()
+        viewModel.recentMatches.observe(viewLifecycleOwner) { it ->
+            it?.let { it ->
+                it.data.forEach { it ->
+                    it.lineup.forEach {
+                        playerList.add(it)
+                        Log.d(TAG, "onViewCreated: $it")
+                    }
+                }
             }
+            playersListRecyclerView.adapter =
+                PlayersRVAdapter(requireContext(), playerList.toList())
             playersListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
+
     }
 }

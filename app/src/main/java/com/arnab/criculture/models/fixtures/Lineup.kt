@@ -4,7 +4,7 @@ import com.arnab.criculture.models.Position
 
 data class Lineup(
     val battingstyle: String,
-    val bowlingstyle: String,
+    val bowlingstyle: String?,
     val country_id: Int,
     val dateofbirth: String,
     val firstname: String,
