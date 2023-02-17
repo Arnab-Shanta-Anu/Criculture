@@ -13,7 +13,6 @@ import com.arnab.criculture.models.fixtures.FixtureWithLineUpandTeams
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.models.teams.TeamData
 import com.arnab.criculture.repository.CricultureRepository
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -32,13 +31,13 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
     private val _recentMatches = MutableLiveData<FixtureWithLineUpandTeams>()
     val recentMatches = _recentMatches
 
-    private val _testRankingMen = MutableLiveData<Ranking>()
-    private val _odiRankingMen = MutableLiveData<Ranking>()
-    private val _t20RankingMen = MutableLiveData<Ranking>()
+    val _testRankingMen = MutableLiveData<Ranking>()
+    val _odiRankingMen = MutableLiveData<Ranking>()
+    val _t20RankingMen = MutableLiveData<Ranking>()
 
-    private val _testRankingWomen = MutableLiveData<Ranking>()
-    private val _odiRankingWomen = MutableLiveData<Ranking>()
-    private val _t20RankingWomen = MutableLiveData<Ranking>()
+    val _testRankingWomen = MutableLiveData<Ranking>()
+    val _odiRankingWomen = MutableLiveData<Ranking>()
+    val _t20RankingWomen = MutableLiveData<Ranking>()
 
     private val cricultureRepository: CricultureRepository
 
@@ -84,7 +83,7 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-    fun getRanking(){
+    fun getRanking() {
         viewModelScope.launch {
             getTestRankingMen()
             getOdiRankingMen()

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(findViewById(R.id.custom_appbar))
+        //setSupportActionBar(findViewById(R.id.custom_appbar))
 
         //check network
         if (checkNetwork(this))
@@ -43,7 +44,9 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-        //setupActionBarWithNavController(navController)
+
+        setupActionBarWithNavController(navController)
+
         val bottomNav: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
@@ -81,5 +84,9 @@ class MainActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             return networkInfo.isConnected
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return super.onSupportNavigateUp()||navController.navigateUp()
     }
 }

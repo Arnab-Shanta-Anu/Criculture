@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.adapters.TeamsRVAdapter
@@ -43,8 +44,8 @@ class HomeFragment : Fragment() {
                 liveMatchRecyclerView.adapter = TeamsRVAdapter(requireContext(), it.data)
             }
             liveMatchRecyclerView.layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false
-            )
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearSnapHelper().attachToRecyclerView(liveMatchRecyclerView)
         }
         viewModel.upcomingMatches.observe(viewLifecycleOwner) {
             it?.let {
@@ -53,6 +54,7 @@ class HomeFragment : Fragment() {
             }
             upcomingMatchesRecyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearSnapHelper().attachToRecyclerView(upcomingMatchesRecyclerView)
         }
     }
 }

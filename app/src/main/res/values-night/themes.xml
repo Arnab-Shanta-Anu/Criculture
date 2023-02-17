@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <resources>
-    <style name="Theme.Criculture" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.Criculture" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
 

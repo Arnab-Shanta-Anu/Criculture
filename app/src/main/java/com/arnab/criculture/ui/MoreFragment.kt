@@ -48,10 +48,12 @@ class MoreFragment : Fragment() {
 
         }
         menRankingTextView.setOnClickListener {
-
+            val action = MoreFragmentDirections.actionMoreFragmentToMenRankingFragment()
+            findNavController().navigate(action)
         }
         womenRankingTextView.setOnClickListener {
-
+            val action = MoreFragmentDirections.actionMoreFragmentToWomenRankingFragment()
+            findNavController().navigate(action)
         }
     }
 }
