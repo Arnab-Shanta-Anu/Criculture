@@ -88,7 +88,6 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
             getTestRankingMen()
             getOdiRankingMen()
             getT20RankingMen()
-            getTestRankingWomen()
             getOdiRankingWomen()
             getT20RankingWomen()
         }
@@ -100,10 +99,6 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
 
     private suspend fun getOdiRankingWomen() {
         _odiRankingWomen.postValue(cricultureRepository.getOdiRankingWomenFromApi())
-    }
-
-    private suspend fun getTestRankingWomen() {
-        _testRankingWomen.postValue(cricultureRepository.getTestRankingWomenFromApi())
     }
 
     private suspend fun getT20RankingMen() {

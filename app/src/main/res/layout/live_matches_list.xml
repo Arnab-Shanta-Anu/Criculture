@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="5dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/md_theme_dark_onPrimaryContainer"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,9 +22,11 @@
 
             <ImageView
                 android:id="@+id/team_2_IV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginEnd="3dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/team_2_runs_TV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="parent"
@@ -31,11 +34,11 @@
 
             <ImageView
                 android:id="@+id/team_1_IV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="112dp"
+                app:layout_constraintBottom_toBottomOf="@+id/team_2_IV"
                 app:layout_constraintEnd_toStartOf="@+id/textView"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -44,12 +47,13 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="43dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="107dp"
                 android:text="VS"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/team_2_IV"
                 app:layout_constraintStart_toEndOf="@+id/team_1_IV"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/match_venue_TV" />
 
             <TextView
                 android:id="@+id/team_1_runs_TV"
@@ -66,12 +70,12 @@
                 android:id="@+id/team_2_overs_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="131dp"
                 android:layout_marginEnd="16dp"
                 android:text="overs 50(0)"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/team_2_runs_TV" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/team_1_overs_TV"
@@ -88,12 +92,34 @@
                 android:id="@+id/team_2_runs_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
                 android:text="100/2"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/team_2_overs_TV"
-                app:layout_constraintTop_toBottomOf="@+id/team_2_IV" />
+                app:layout_constraintBottom_toTopOf="@+id/team_2_overs_TV"
+                app:layout_constraintEnd_toEndOf="@+id/team_2_overs_TV" />
+
+            <TextView
+                android:id="@+id/match_venue_TV"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Match details"
+                app:layout_constraintEnd_toStartOf="@+id/team_2_IV"
+                app:layout_constraintStart_toEndOf="@+id/team_1_IV"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/match_result_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:gravity="center"
+                android:text="Team1 Won"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

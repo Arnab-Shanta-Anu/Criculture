@@ -3,7 +3,7 @@ package com.arnab.criculture.models.fixtures
 import com.arnab.criculture.models.Position
 
 data class Lineup(
-    val battingstyle: String,
+    val battingstyle: String?,
     val bowlingstyle: String?,
     val country_id: Int,
     val dateofbirth: String,

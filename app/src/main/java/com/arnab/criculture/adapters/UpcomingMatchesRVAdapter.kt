@@ -13,6 +13,7 @@ import com.arnab.criculture.R
 import com.arnab.criculture.models.fixtures.FixtureData
 import com.arnab.criculture.viewmodel.CricultureViewModel
 import com.bumptech.glide.Glide
+import org.w3c.dom.Text
 
 class UpcomingMatchesRVAdapter(
     private val context: Context,
@@ -21,13 +22,18 @@ class UpcomingMatchesRVAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val team1Img: ImageView = itemView.findViewById(R.id.team_1_IV)
         val team2Img: ImageView = itemView.findViewById(R.id.team_2_IV)
-        val timeAndDate: TextView = itemView.findViewById(R.id.time_n_date_TV)
+        val matchVenueTV: TextView = itemView.findViewById(R.id.match_venue_TV)
+        val matchResultTV: TextView = itemView.findViewById(R.id.match_result_TV)
+        val team1RunsTV: TextView = itemView.findViewById(R.id.team_1_runs_TV)
+        val team2RunsTV: TextView = itemView.findViewById(R.id.team_2_runs_TV)
+        val team1BallsTv: TextView = itemView.findViewById(R.id.team_1_overs_TV)
+        val team2BallsTv: TextView = itemView.findViewById(R.id.team_2_overs_TV)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.upcoming_matches_list, parent, false)
+                .inflate(R.layout.live_matches_list, parent, false)
         )
     }
 
@@ -37,15 +43,19 @@ class UpcomingMatchesRVAdapter(
 
         Glide.with(context)
             .load(item.localteam.image_path)
-            .override(300, 300)
             .into(holder.team1Img)
 
         Glide.with(context)
             .load(item.visitorteam.image_path)
-            .override(300, 300)
             .into(holder.team2Img)
 
-        holder.timeAndDate.text = item.starting_at
+        //holder.timeAndDate.text = item.starting_at.split('T')[0]
+        holder.matchVenueTV.text = item.venue?.name
+        holder.matchResultTV.text = item.note
+        holder.team1RunsTV.text = "${item.runs?.get(0)?.score}/${item.runs?.get(0)?.wickets}"
+        holder.team2RunsTV.text = "${item.runs?.get(1)?.score}/${item.runs?.get(1)?.wickets}"
+        holder.team1BallsTv.text = "Overs(${item.runs?.get(0)?.overs})"
+        holder.team2BallsTv.text = "Overs(${item.runs?.get(1)?.overs})"
     }
 
     override fun getItemCount(): Int {

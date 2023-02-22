@@ -48,18 +48,8 @@ class WomenRankingFragment : Fragment() {
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
 
-        binding.btnTestRankingMen.setOnClickListener {
-            viewModel._testRankingWomen.observe(viewLifecycleOwner) { it ->
-                val teams = mutableListOf<Team>()
-                it.data.forEach { it ->
-                    it.team.forEach {
-                        teams.add(it)
-                    }
-                }
-                recyclerView.adapter = MenRankingRVAdapter(requireContext(), teams)
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            }
-        }
+        binding.btnTestRankingMen.visibility = View.GONE
+
         binding.btnOdiRankingMen.setOnClickListener {
             viewModel._odiRankingWomen.observe(viewLifecycleOwner) { it ->
                 val teams = mutableListOf<Team>()
@@ -84,8 +74,6 @@ class WomenRankingFragment : Fragment() {
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
             }
         }
-        binding.btnTestRankingMen.performClick()
-
-
+        binding.btnOdiRankingMen.performClick()
     }
 }

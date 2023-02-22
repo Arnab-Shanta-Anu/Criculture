@@ -7,18 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.adapters.PlayersRVAdapter
+import com.arnab.criculture.databinding.FragmentPlayersBinding
 import com.arnab.criculture.models.fixtures.Lineup
 import com.arnab.criculture.viewmodel.CricultureViewModel
 
 private const val TAG = "PlayersFragment"
 
 class PlayersFragment() : Fragment() {
+
+    lateinit var binding: FragmentPlayersBinding
+    lateinit var viewModel: CricultureViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -37,9 +43,15 @@ class PlayersFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val playersListRecyclerView: RecyclerView = view.findViewById(R.id.players_list_RV)
-        val viewModel = ViewModelProvider(this)[CricultureViewModel::class.java]
+        binding = FragmentPlayersBinding.bind(view)
+
+        val searchView: SearchView = binding.searchView
+        val playersListRecyclerView: RecyclerView = binding.playersListRV
+        playersListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        viewModel = ViewModelProvider(this)[CricultureViewModel::class.java]
         val playerList = mutableSetOf<Lineup>()
+
+        searchView.clearFocus()
         viewModel.recentMatches.observe(viewLifecycleOwner) { it ->
             it?.let { it ->
                 it.data.forEach { it ->
@@ -51,8 +63,35 @@ class PlayersFragment() : Fragment() {
             }
             playersListRecyclerView.adapter =
                 PlayersRVAdapter(requireContext(), playerList.toList())
-            playersListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                val filteredList = mutableSetOf<Lineup>()
+                viewModel.recentMatches.observe(viewLifecycleOwner) { it ->
+                    it?.data?.forEach { it ->
+                        it.lineup.forEach {
+                            if (it.fullname.contains(query!!, ignoreCase = true)) {
+                                filteredList.add(it)
+                            }
+                        }
+                    }
+                }
+                playersListRecyclerView.adapter = PlayersRVAdapter(
+                    requireContext(),
+                    filteredList.toList()
+                )
+                return false
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) {
+                    playersListRecyclerView.adapter = PlayersRVAdapter(
+                        requireContext(), playerList.toList()
+                    )
+                }
+                return true
+            }
+        })
     }
 }

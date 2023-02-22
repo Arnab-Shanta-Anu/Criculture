@@ -7,7 +7,7 @@
     android:layout_marginEnd="5dp"
     android:layout_marginBottom="5dp"
     android:padding="4dp"
-    android:background="@color/md_theme_dark_inversePrimary">
+    android:background="@color/md_theme_dark_onPrimaryContainer">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

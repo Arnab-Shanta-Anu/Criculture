@@ -60,11 +60,6 @@ class CricultureRepository(private val cricultureDao: ICricultureDao) {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun getTestRankingWomenFromApi(): Ranking {
-        return SportMonksApi.retrofitService.getTestRankingWomen()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun getOdiRankingWomenFromApi(): Ranking {
         return SportMonksApi.retrofitService.getOdiRankingWomen()
     }

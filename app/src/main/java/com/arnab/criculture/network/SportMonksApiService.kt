@@ -49,9 +49,6 @@ interface SportMonksApiService {
     @GET(Constants.T20_RANKING_MEN_QUERY)
     suspend fun getT20RankingMen(): Ranking
 
-    @GET(Constants.TEST_RANKING_WOMEN_QUERY)
-    suspend fun getTestRankingWomen(): Ranking
-
     @GET(Constants.ODI_RANKING_WOMEN_QUERY)
     suspend fun getOdiRankingWomen(): Ranking
 
