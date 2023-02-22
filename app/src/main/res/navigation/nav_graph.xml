@@ -19,7 +19,11 @@
         android:id="@+id/recentFragment"
         android:name="com.arnab.criculture.ui.RecentFragment"
         android:label="fragment_recent"
-        tools:layout="@layout/fragment_recent" />
+        tools:layout="@layout/fragment_recent" >
+        <action
+            android:id="@+id/action_recentFragment_to_matchDetailsFragment"
+            app:destination="@id/matchDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.arnab.criculture.ui.MoreFragment"
@@ -42,7 +46,11 @@
         android:id="@+id/playersFragment"
         android:name="com.arnab.criculture.ui.PlayersFragment"
         android:label="fragment_players"
-        tools:layout="@layout/fragment_players" />
+        tools:layout="@layout/fragment_players" >
+        <action
+            android:id="@+id/action_playersFragment_to_playerDetailsFragment"
+            app:destination="@id/playerDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menRankingFragment"
         android:name="com.arnab.criculture.ui.MenRankingFragment"
@@ -58,4 +66,36 @@
         android:name="com.arnab.criculture.ui.TeamsFragment"
         android:label="fragment_teams"
         tools:layout="@layout/fragment_teams" />
+    <fragment
+        android:id="@+id/matchDetailsFragment"
+        android:name="com.arnab.criculture.ui.MatchDetailsFragment"
+        android:label="fragment_match_details"
+        tools:layout="@layout/fragment_match_details" >
+        <argument android:name="localTeamName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="visitorTeamName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="localTeamRuns"
+            app:argType="integer" />
+        <argument android:name="visitorTeamRuns"
+            app:argType="integer" />
+        <argument android:name="localTeamWickets"
+            app:argType="integer" />
+        <argument android:name="visitorTeamWickets"
+            app:argType="integer" />
+        <argument android:name="localTeamOvers"
+            app:argType="float" />
+        <argument android:name="visitorTeamOvers"
+            app:argType="float" />
+        <argument android:name="matchResult"
+            app:argType="string"
+            app:nullable="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/playerDetailsFragment"
+        android:name="com.arnab.criculture.ui.PlayerDetailsFragment"
+        android:label="fragment_player_details"
+        tools:layout="@layout/fragment_player_details" />
 </navigation>

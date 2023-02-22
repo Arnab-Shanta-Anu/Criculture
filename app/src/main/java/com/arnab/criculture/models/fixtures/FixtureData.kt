@@ -1,9 +1,11 @@
 package com.arnab.criculture.models.fixtures
 
 import com.arnab.criculture.models.TeamDlData
+import com.arnab.criculture.models.fixtures.Manofmatch
 import com.arnab.criculture.models.teams.TeamData
 
 data class FixtureData(
+    val batting: List<Batting>?,
     val draw_noresult: Any?,
     val elected: String?,
     val first_umpire_id: Int?,
@@ -17,6 +19,7 @@ data class FixtureData(
     val localteam_dl_data: TeamDlData?,
     val localteam_id: Int?,
     val man_of_match_id: Int?,
+    val manofmatch: Manofmatch?,
     val man_of_series_id: Int?,
     val note: String?,
     val referee_id: Int?,

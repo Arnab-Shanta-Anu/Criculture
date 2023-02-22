@@ -26,7 +26,9 @@ class Constants {
         const val UPCOMING_MATCHES_QUERY =
             "fixtures?filter[starts_between]=2023-02-17,2023-02-28&include=visitorteam,localteam,lineup&api_token=${API_TOKEN}"
         const val RECENT_MATCHES_QUERY =
-            "fixtures?filter[starts_between]=2023-02-1,2023-02-24&include=visitorteam,localteam,lineup,venue,runs&api_token=${API_TOKEN}"
+            "fixtures?filter[starts_between]=2023-02-1,2023-02-24&"+
+                    "include=visitorteam,localteam,lineup,venue,runs,,batting,manofmatch,batting.batsman"+
+                    "&api_token=${API_TOKEN}"
         const val TEST_RANKING_MEN_QUERY =
             "team-rankings?filter[type]=TEST&filter[gender]=men&api_token=${API_TOKEN}"
         const val ODI_RANKING_MEN_QUERY =

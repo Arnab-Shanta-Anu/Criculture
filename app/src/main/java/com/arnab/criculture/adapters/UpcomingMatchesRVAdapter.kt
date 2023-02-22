@@ -8,18 +8,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.models.fixtures.FixtureData
-import com.arnab.criculture.viewmodel.CricultureViewModel
+import com.arnab.criculture.ui.RecentFragmentDirections
 import com.bumptech.glide.Glide
-import org.w3c.dom.Text
 
 class UpcomingMatchesRVAdapter(
     private val context: Context,
     private val dataSet: List<FixtureData>,
 ) : RecyclerView.Adapter<UpcomingMatchesRVAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val cardView: CardView = itemView.findViewById(R.id.cardView)
         val team1Img: ImageView = itemView.findViewById(R.id.team_1_IV)
         val team2Img: ImageView = itemView.findViewById(R.id.team_2_IV)
         val matchVenueTV: TextView = itemView.findViewById(R.id.match_venue_TV)
@@ -56,6 +58,21 @@ class UpcomingMatchesRVAdapter(
         holder.team2RunsTV.text = "${item.runs?.get(1)?.score}/${item.runs?.get(1)?.wickets}"
         holder.team1BallsTv.text = "Overs(${item.runs?.get(0)?.overs})"
         holder.team2BallsTv.text = "Overs(${item.runs?.get(1)?.overs})"
+
+        holder.cardView.setOnClickListener {
+            val action = RecentFragmentDirections.actionRecentFragmentToMatchDetailsFragment(
+                item.localteam.name,
+                item.visitorteam.name,
+                item.runs?.get(0)?.score!!,
+                item.runs?.get(1)?.score!!,
+                item.runs?.get(0)?.wickets!!,
+                item.runs?.get(1)?.wickets!!,
+                item.runs?.get(0)?.overs!!.toFloat(),
+                item.runs?.get(1)?.overs!!.toFloat(),
+                item.note!!
+            )
+            findNavController(holder.itemView).navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {
