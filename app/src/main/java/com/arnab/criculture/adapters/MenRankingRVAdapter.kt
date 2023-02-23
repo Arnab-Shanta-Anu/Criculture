@@ -8,8 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
-import com.arnab.criculture.models.Ranking.RankingData
-import com.arnab.criculture.models.Ranking.Team
+import com.arnab.criculture.models.ranking.Team
 import com.bumptech.glide.Glide
 
 class MenRankingRVAdapter(

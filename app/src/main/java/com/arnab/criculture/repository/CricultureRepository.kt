@@ -4,7 +4,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.arnab.criculture.db.dao.ICricultureDao
-import com.arnab.criculture.models.Ranking.Ranking
+import com.arnab.criculture.models.ranking.Ranking
 import com.arnab.criculture.models.fixtures.FixtureWithLineUpandTeams
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.models.teams.TeamData

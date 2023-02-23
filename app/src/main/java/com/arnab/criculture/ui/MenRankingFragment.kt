@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.adapters.MenRankingRVAdapter
 import com.arnab.criculture.databinding.FragmentMenRankingBinding
-import com.arnab.criculture.models.Ranking.Team
+import com.arnab.criculture.models.ranking.Team
 import com.arnab.criculture.viewmodel.CricultureViewModel
 
 class MenRankingFragment : Fragment() {

@@ -1,10 +1,15 @@
 package com.arnab.criculture.models.fixtures
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
+
+@Parcelize
 data class Batting(
     val active: Boolean,
     val ball: Int,
     val batsman: Batsman,
-    val batsmanout_id: Any?,
+    val batsmanout_id: @RawValue Any?,
     val bowling_player_id: Int?,
     val catch_stump_player_id: Int?,
     val fixture_id: Int,
@@ -23,4 +28,4 @@ data class Batting(
     val sort: Int,
     val team_id: Int,
     val updated_at: String
-)
+): Parcelable

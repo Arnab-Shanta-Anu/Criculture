@@ -77,6 +77,10 @@
         <argument android:name="visitorTeamName"
             app:argType="string"
             app:nullable="true" />
+        <argument android:name="localTeamImgPath"
+            app:argType="string"/>
+        <argument android:name="visitorTeamImgPath"
+            app:argType="string"/>
         <argument android:name="localTeamRuns"
             app:argType="integer" />
         <argument android:name="visitorTeamRuns"
@@ -92,6 +96,10 @@
         <argument android:name="matchResult"
             app:argType="string"
             app:nullable="true"/>
+        <argument
+            android:name="battingDetails"
+            app:argType="com.arnab.criculture.models.fixtures.Batting[]"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/playerDetailsFragment"

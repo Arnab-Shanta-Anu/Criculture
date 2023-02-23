@@ -16,10 +16,10 @@ import com.arnab.criculture.models.fixtures.FixtureData
 import com.arnab.criculture.ui.RecentFragmentDirections
 import com.bumptech.glide.Glide
 
-class UpcomingMatchesRVAdapter(
+class RecentMatchesRVAdapter(
     private val context: Context,
     private val dataSet: List<FixtureData>,
-) : RecyclerView.Adapter<UpcomingMatchesRVAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<RecentMatchesRVAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardView: CardView = itemView.findViewById(R.id.cardView)
         val team1Img: ImageView = itemView.findViewById(R.id.team_1_IV)
@@ -63,13 +63,16 @@ class UpcomingMatchesRVAdapter(
             val action = RecentFragmentDirections.actionRecentFragmentToMatchDetailsFragment(
                 item.localteam.name,
                 item.visitorteam.name,
+                item.localteam.image_path,
+                item.visitorteam.image_path,
                 item.runs?.get(0)?.score!!,
                 item.runs?.get(1)?.score!!,
                 item.runs?.get(0)?.wickets!!,
                 item.runs?.get(1)?.wickets!!,
                 item.runs?.get(0)?.overs!!.toFloat(),
                 item.runs?.get(1)?.overs!!.toFloat(),
-                item.note!!
+                item.note!!,
+                item.batting?.toTypedArray()
             )
             findNavController(holder.itemView).navigate(action)
         }

@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.arnab.criculture.db.CricultureDatabase
-import com.arnab.criculture.models.Ranking.Ranking
+import com.arnab.criculture.models.ranking.Ranking
 import com.arnab.criculture.models.fixtures.FixtureWithLineUpandTeams
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.models.teams.TeamData

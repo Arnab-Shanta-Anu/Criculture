@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(
                 findViewById(R.id.fragmentContainerView),
                 "please connect to network",
-                Snackbar.LENGTH_INDEFINITE
+                Snackbar.LENGTH_SHORT
             ).show()
         }
 
@@ -49,18 +49,24 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNav.setOnItemSelectedListener {
+            val fragment =
+                supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
             when (it.itemId) {
                 R.id.bottom_nav_home -> {
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.homeFragment)
+                    if (fragment?.id != R.id.homeFragment)
+                        findNavController(R.id.fragmentContainerView).navigate(R.id.homeFragment)
                 }
                 R.id.bottom_nav_recent -> {
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.recentFragment)
+                    if (fragment?.id != R.id.recentFragment)
+                        findNavController(R.id.fragmentContainerView).navigate(R.id.recentFragment)
                 }
                 R.id.bottom_nav_schedule -> {
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.fixtureFragment)
+                    if (fragment?.id != R.id.fixtureFragment)
+                        findNavController(R.id.fragmentContainerView).navigate(R.id.fixtureFragment)
                 }
                 R.id.bottom_nav_more -> {
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.moreFragment)
+                    if (fragment?.id != R.id.moreFragment)
+                        findNavController(R.id.fragmentContainerView).navigate(R.id.moreFragment)
                 }
             }
             true
@@ -87,6 +93,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return super.onSupportNavigateUp()||navController.navigateUp()
+        return super.onSupportNavigateUp() || navController.navigateUp()
     }
 }

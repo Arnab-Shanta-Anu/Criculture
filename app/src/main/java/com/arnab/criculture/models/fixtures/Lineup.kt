@@ -1,7 +1,10 @@
 package com.arnab.criculture.models.fixtures
 
+import android.os.Parcelable
 import com.arnab.criculture.models.Position
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Lineup(
     val battingstyle: String?,
     val bowlingstyle: String?,
@@ -17,4 +20,4 @@ data class Lineup(
     val position: Position,
     val resource: String,
     val updated_at: String
-)
+): Parcelable

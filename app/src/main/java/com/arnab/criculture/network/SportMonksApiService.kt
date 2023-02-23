@@ -2,7 +2,7 @@ package com.arnab.criculture.network
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.arnab.criculture.models.Ranking.Ranking
+import com.arnab.criculture.models.ranking.Ranking
 import com.arnab.criculture.models.fixtures.FixtureWithLineUpandTeams
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.utils.Constants

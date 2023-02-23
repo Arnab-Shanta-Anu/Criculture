@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.adapters.TeamsRVAdapter
-import com.arnab.criculture.adapters.UpcomingMatchesRVAdapter
+import com.arnab.criculture.adapters.RecentMatchesRVAdapter
 import com.arnab.criculture.viewmodel.CricultureViewModel
 
 class HomeFragment : Fragment() {
@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         viewModel.upcomingMatches.observe(viewLifecycleOwner) {
             it?.let {
                 upcomingMatchesRecyclerView.adapter =
-                    UpcomingMatchesRVAdapter(requireContext(), it.data)
+                    RecentMatchesRVAdapter(requireContext(), it.data)
             }
             upcomingMatchesRecyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

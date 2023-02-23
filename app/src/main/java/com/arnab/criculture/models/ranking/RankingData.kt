@@ -1,4 +1,4 @@
-package com.arnab.criculture.models.Ranking
+package com.arnab.criculture.models.ranking
 
 data class RankingData(
     val gender: String,
