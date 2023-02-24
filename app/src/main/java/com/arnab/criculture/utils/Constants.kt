@@ -24,10 +24,11 @@ class Constants {
         const val LIVE_SCORE_QUERY = "livescores?api_token=${API_TOKEN}"
 
         const val UPCOMING_MATCHES_QUERY =
-            "fixtures?filter[starts_between]=2023-02-17,2023-02-28&include=visitorteam,localteam,lineup&api_token=${API_TOKEN}"
+            "fixtures?filter[starts_between]=2023-02-28,2023-03-30&include=visitorteam,localteam,lineup" +
+                    "&api_token=${API_TOKEN}"
         const val RECENT_MATCHES_QUERY =
-            "fixtures?filter[starts_between]=2023-02-1,2023-02-24&"+
-                    "include=visitorteam,localteam,lineup,venue,runs,,batting,manofmatch,batting.batsman,bowling,bowling.bowler,scoreboards"+
+            "fixtures?filter[starts_between]=2023-01-01,2023-02-23&" +
+                    "include=visitorteam,localteam,lineup,venue,runs,,batting,manofmatch,batting.batsman,bowling,bowling.bowler,scoreboards" +
                     "&api_token=${API_TOKEN}"
         const val TEST_RANKING_MEN_QUERY =
             "team-rankings?filter[type]=TEST&filter[gender]=men&api_token=${API_TOKEN}"
@@ -39,6 +40,5 @@ class Constants {
             "team-rankings?filter[type]=ODI&filter[gender]=women&api_token=${API_TOKEN}"
         const val T20_RANKING_WOMEN_QUERY =
             "team-rankings?filter[type]=T20&filter[gender]=women&api_token=${API_TOKEN}"
-
     }
 }

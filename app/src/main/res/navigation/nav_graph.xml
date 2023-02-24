@@ -8,17 +8,17 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.arnab.criculture.ui.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/fixtureFragment"
         android:name="com.arnab.criculture.ui.FixtureFragment"
-        android:label="fragment_fixture"
+        android:label="Fixtures"
         tools:layout="@layout/fragment_fixture" />
     <fragment
         android:id="@+id/recentFragment"
         android:name="com.arnab.criculture.ui.RecentFragment"
-        android:label="fragment_recent"
+        android:label="Recent Matches"
         tools:layout="@layout/fragment_recent" >
         <action
             android:id="@+id/action_recentFragment_to_matchDetailsFragment"
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.arnab.criculture.ui.MoreFragment"
-        android:label="fragment_more"
+        android:label="More"
         tools:layout="@layout/fragment_more" >
         <action
             android:id="@+id/action_moreFragment_to_playersFragment"
@@ -45,7 +45,7 @@
     <fragment
         android:id="@+id/playersFragment"
         android:name="com.arnab.criculture.ui.PlayersFragment"
-        android:label="fragment_players"
+        android:label="Players"
         tools:layout="@layout/fragment_players" >
         <action
             android:id="@+id/action_playersFragment_to_playerDetailsFragment"
@@ -54,22 +54,22 @@
     <fragment
         android:id="@+id/menRankingFragment"
         android:name="com.arnab.criculture.ui.MenRankingFragment"
-        android:label="fragment_men_ranking"
+        android:label="Men Ranking"
         tools:layout="@layout/fragment_men_ranking" />
     <fragment
         android:id="@+id/womenRankingFragment"
         android:name="com.arnab.criculture.ui.WomenRankingFragment"
-        android:label="fragment_women_ranking"
+        android:label="Women Ranking"
         tools:layout="@layout/fragment_men_ranking" />
     <fragment
         android:id="@+id/teamsFragment"
         android:name="com.arnab.criculture.ui.TeamsFragment"
-        android:label="fragment_teams"
+        android:label="Teams"
         tools:layout="@layout/fragment_teams" />
     <fragment
         android:id="@+id/matchDetailsFragment"
         android:name="com.arnab.criculture.ui.MatchDetailsFragment"
-        android:label="fragment_match_details"
+        android:label="Match Details"
         tools:layout="@layout/fragment_match_details" >
         <argument android:name="localTeamName"
             app:argType="string"
@@ -104,6 +104,6 @@
     <fragment
         android:id="@+id/playerDetailsFragment"
         android:name="com.arnab.criculture.ui.PlayerDetailsFragment"
-        android:label="fragment_player_details"
+        android:label="Player Details"
         tools:layout="@layout/fragment_player_details" />
 </navigation>

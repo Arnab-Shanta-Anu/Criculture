@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.adapters.TeamsRVAdapter
@@ -35,18 +36,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val liveMatchRecyclerView: RecyclerView = view.findViewById(R.id.live_match_RV)
         val upcomingMatchesRecyclerView: RecyclerView = view.findViewById(R.id.upcoming_match_RV)
         val viewModel = ViewModelProvider(this)[CricultureViewModel::class.java]
+        val liveMatchRecyclerView: RecyclerView = view.findViewById(R.id.live_match_RV)
 
         viewModel.allTeams.observe(viewLifecycleOwner) {
             it?.let {
                 liveMatchRecyclerView.adapter = TeamsRVAdapter(requireContext(), it.data)
             }
             liveMatchRecyclerView.layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            LinearSnapHelper().attachToRecyclerView(liveMatchRecyclerView)
+                LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
+            PagerSnapHelper().attachToRecyclerView(liveMatchRecyclerView)
         }
+
         viewModel.upcomingMatches.observe(viewLifecycleOwner) {
             it?.let {
                 upcomingMatchesRecyclerView.adapter =

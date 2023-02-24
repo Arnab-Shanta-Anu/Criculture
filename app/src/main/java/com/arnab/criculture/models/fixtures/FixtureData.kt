@@ -2,7 +2,6 @@ package com.arnab.criculture.models.fixtures
 
 import android.os.Parcelable
 import com.arnab.criculture.models.TeamDlData
-import com.arnab.criculture.models.fixtures.Manofmatch
 import com.arnab.criculture.models.teams.TeamData
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
@@ -10,6 +9,7 @@ import kotlinx.parcelize.RawValue
 @Parcelize
 data class FixtureData(
     val batting: List<Batting>?,
+    val bowling: List<Bowling>?,
     val draw_noresult: @RawValue Any?,
     val elected: String?,
     val first_umpire_id: Int?,
@@ -32,6 +32,7 @@ data class FixtureData(
     val rpc_overs: @RawValue Any?,
     val rpc_target: @RawValue Any?,
     val runs: List<Run>?,
+    val scoreboards: List<Scoreboard>?,
     val season_id: Int,
     val second_umpire_id: Int?,
     val stage_id: Int?,
@@ -49,4 +50,4 @@ data class FixtureData(
     val visitorteam_id: Int,
     val weather_report: @RawValue List<Any>,
     val winner_team_id: Int?
-): Parcelable
+) : Parcelable

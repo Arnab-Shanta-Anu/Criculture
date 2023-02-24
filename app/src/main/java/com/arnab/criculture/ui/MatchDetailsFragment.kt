@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
+import com.arnab.criculture.adapters.BowlingRVAdapter
 import com.arnab.criculture.adapters.MatchDetailsRVAdapter
-import com.arnab.criculture.databinding.FragmentMatchDetailsBinding
+import com.arnab.criculture.adapters.SquadRVAdapter
 import com.arnab.criculture.models.fixtures.Batting
+import com.arnab.criculture.models.fixtures.Bowling
+import com.arnab.criculture.models.fixtures.Lineup
 import com.bumptech.glide.Glide
+import com.arnab.criculture.databinding.FragmentMatchDetailsBinding
 
 private const val TAG = "MatchDetailsFragment"
 
@@ -60,10 +63,6 @@ class MatchDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMatchDetailsBinding.bind(view)
 
-        /*val recyclerView: RecyclerView = binding.matchDetailsRV
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = MatchDetailsRVAdapter(requireContext(), battingDetails)*/
-
         binding.team1Name.text = team1Name
         binding.team2Name.text = team2Name
         Glide.with(requireContext())
@@ -77,8 +76,33 @@ class MatchDetailsFragment : Fragment() {
         binding.team1OversTV.text = "Overs($team1Overs)"
         binding.team2OversTV.text = "Overs($team2Overs)"
         binding.matchResultTV.text = matchResult
-        binding.layout.addView(
-            LayoutInflater.from(requireContext()).inflate(R.layout.match_scoreboard_layout, null)
-        )
+
+        val recyclerView = binding.matchDetailsRV
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.battingLL.visibility = View.GONE
+        binding.squadLL.visibility = View.GONE
+        binding.bowlingLL.visibility = View.GONE
+
+        binding.battingBTN.setOnClickListener {
+            binding.battingLL.visibility = View.VISIBLE
+            binding.squadLL.visibility = View.GONE
+            binding.bowlingLL.visibility = View.GONE
+
+            recyclerView.adapter = MatchDetailsRVAdapter(requireContext(), battingDetails)
+        }
+        binding.bowlingBTN.setOnClickListener {
+            binding.bowlingLL.visibility = View.VISIBLE
+            binding.battingLL.visibility = View.GONE
+            binding.squadLL.visibility = View.GONE
+
+            recyclerView.adapter = BowlingRVAdapter(requireContext(), listOf<Bowling>())
+        }
+        binding.squadBTN.setOnClickListener {
+            binding.squadLL.visibility = View.VISIBLE
+            binding.battingLL.visibility = View.GONE
+            binding.bowlingLL.visibility = View.GONE
+
+            recyclerView.adapter = SquadRVAdapter(requireContext(), listOf<Lineup>())
+        }
     }
 }

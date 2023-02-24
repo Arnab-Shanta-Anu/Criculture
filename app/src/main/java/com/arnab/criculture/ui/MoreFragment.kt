@@ -11,12 +11,6 @@ import com.arnab.criculture.R
 
 class MoreFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +33,8 @@ class MoreFragment : Fragment() {
             findNavController().navigate(action)
         }
         teamsTextView.setOnClickListener {
-
+            val action = MoreFragmentDirections.actionMoreFragmentToTeamsFragment()
+            findNavController().navigate(action)
         }
         scheduleTextView.setOnClickListener {
 

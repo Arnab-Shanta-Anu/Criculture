@@ -5,8 +5,8 @@ import com.arnab.criculture.models.Position
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Manofmatch(
-    val battingstyle: String,
+data class Bowler(
+    val battingstyle: String?,
     val bowlingstyle: String?,
     val country_id: Int,
     val dateofbirth: String,

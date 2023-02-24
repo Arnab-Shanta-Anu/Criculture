@@ -2,6 +2,7 @@ package com.arnab.criculture.adapters
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import com.arnab.criculture.R
 import com.arnab.criculture.models.fixtures.FixtureData
 import com.arnab.criculture.ui.RecentFragmentDirections
 import com.bumptech.glide.Glide
+
+private const val TAG = "RecentMatchesRVAdapter"
 
 class RecentMatchesRVAdapter(
     private val context: Context,
@@ -54,27 +57,37 @@ class RecentMatchesRVAdapter(
         //holder.timeAndDate.text = item.starting_at.split('T')[0]
         holder.matchVenueTV.text = item.venue?.name
         holder.matchResultTV.text = item.note
-        holder.team1RunsTV.text = "${item.runs?.get(0)?.score}/${item.runs?.get(0)?.wickets}"
-        holder.team2RunsTV.text = "${item.runs?.get(1)?.score}/${item.runs?.get(1)?.wickets}"
-        holder.team1BallsTv.text = "Overs(${item.runs?.get(0)?.overs})"
-        holder.team2BallsTv.text = "Overs(${item.runs?.get(1)?.overs})"
-
-        holder.cardView.setOnClickListener {
-            val action = RecentFragmentDirections.actionRecentFragmentToMatchDetailsFragment(
-                item.localteam.name,
-                item.visitorteam.name,
-                item.localteam.image_path,
-                item.visitorteam.image_path,
-                item.runs?.get(0)?.score!!,
-                item.runs?.get(1)?.score!!,
-                item.runs?.get(0)?.wickets!!,
-                item.runs?.get(1)?.wickets!!,
-                item.runs?.get(0)?.overs!!.toFloat(),
-                item.runs?.get(1)?.overs!!.toFloat(),
-                item.note!!,
-                item.batting?.toTypedArray()
+        try {
+            holder.team1RunsTV.text = "${item.runs?.get(0)?.score}/${item.runs?.get(0)?.wickets}"
+            holder.team2RunsTV.text = "${item.runs?.get(1)?.score}/${item.runs?.get(1)?.wickets}"
+            holder.team1BallsTv.text = "Overs(${item.runs?.get(0)?.overs})"
+            holder.team2BallsTv.text = "Overs(${item.runs?.get(1)?.overs})"
+        } catch (e: Exception) {
+            Log.e(
+                TAG,
+                "onBindViewHolder: \nitem: ${item.runs}\nerror: $e"
             )
-            findNavController(holder.itemView).navigate(action)
+        }
+        holder.cardView.setOnClickListener {
+            try {
+                val action = RecentFragmentDirections.actionRecentFragmentToMatchDetailsFragment(
+                    item.localteam.name,
+                    item.visitorteam.name,
+                    item.localteam.image_path,
+                    item.visitorteam.image_path,
+                    item.runs?.get(0)?.score!!,
+                    item.runs?.get(1)?.score!!,
+                    item.runs?.get(0)?.wickets!!,
+                    item.runs?.get(1)?.wickets!!,
+                    item.runs?.get(0)?.overs!!.toFloat(),
+                    item.runs?.get(1)?.overs!!.toFloat(),
+                    item.note!!,
+                    item.batting?.toTypedArray()
+                )
+                findNavController(holder.itemView).navigate(action)
+            }catch (e: Exception){
+                Log.e(TAG, "onBindViewHolder: error: $e")
+            }
         }
     }
 
