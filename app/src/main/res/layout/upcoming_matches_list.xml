@@ -6,18 +6,18 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="5dp"
     android:layout_marginBottom="5dp"
-    android:padding="4dp"
-    android:background="@color/md_theme_dark_onPrimaryContainer">
+    android:background="@color/md_theme_dark_onPrimaryContainer"
+    android:padding="4dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="5dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,8 +27,8 @@
                 android:id="@+id/team_2_IV"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:scaleType="fitXY"
                 android:layout_marginEnd="3dp"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,8 +38,8 @@
                 android:id="@+id/team_1_IV"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:scaleType="fitXY"
                 android:layout_marginEnd="5dp"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toStartOf="@+id/textView"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,8 +51,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="VS"
-                android:textStyle="bold"
                 android:textSize="32sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/team_1_IV"
                 app:layout_constraintEnd_toStartOf="@+id/team_2_IV"
                 app:layout_constraintStart_toEndOf="@+id/team_1_IV"
@@ -62,10 +62,10 @@
                 android:id="@+id/time_n_date_TV"
                 android:layout_width="401dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="4dp"
                 android:gravity="center"
                 android:text="Time and Date"
                 android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/team_1_IV" />
 

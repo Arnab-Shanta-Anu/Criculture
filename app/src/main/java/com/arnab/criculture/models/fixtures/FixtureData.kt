@@ -1,7 +1,9 @@
 package com.arnab.criculture.models.fixtures
 
 import android.os.Parcelable
+import com.arnab.criculture.models.Scoreboard
 import com.arnab.criculture.models.TeamDlData
+import com.arnab.criculture.models.Venue
 import com.arnab.criculture.models.teams.TeamData
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue

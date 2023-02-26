@@ -1,4 +1,4 @@
-package com.arnab.criculture.models.fixtures
+package com.arnab.criculture.models
 
 data class Link(
     val active: Boolean?            ,

@@ -1,4 +1,4 @@
-package com.arnab.criculture.models.fixtures
+package com.arnab.criculture.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

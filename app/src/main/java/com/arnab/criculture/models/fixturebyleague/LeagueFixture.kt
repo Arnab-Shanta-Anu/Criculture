@@ -1,10 +1,10 @@
-package com.arnab.criculture.models.fixtures
+package com.arnab.criculture.models.fixturebyleague
 
 import com.arnab.criculture.models.Links
 import com.arnab.criculture.models.Meta
 
-data class FixtureWithLineUpandTeams(
-    val `data`: List<FixtureData>,
+data class LeagueFixture(
+    val `data`: List<LeagueFixtureData>,
     val links: Links,
     val meta: Meta
 )

@@ -54,6 +54,15 @@ interface SportMonksApiService {
 
     @GET(Constants.T20_RANKING_WOMEN_QUERY)
     suspend fun getT20RankingWomen(): Ranking
+
+    @GET(Constants.T20_FIXTURE_QUERY)
+    suspend fun getT20Fixture()
+
+    @GET(Constants.BIG_BASH_FIXTURE_QUERY)
+    suspend fun getBBashFixture()
+
+    @GET(Constants.CSA_T20_FIXTURE_QUERY)
+    suspend fun getCsaFixture()
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

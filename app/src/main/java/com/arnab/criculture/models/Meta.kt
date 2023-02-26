@@ -1,4 +1,6 @@
-package com.arnab.criculture.models.fixtures
+package com.arnab.criculture.models
+
+import com.arnab.criculture.models.Link
 
 data class Meta(
     val current_page: Int,
