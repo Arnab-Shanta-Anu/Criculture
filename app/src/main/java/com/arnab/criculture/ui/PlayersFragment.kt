@@ -55,12 +55,13 @@ class PlayersFragment() : Fragment() {
         viewModel.recentMatches.observe(viewLifecycleOwner) { it ->
             it?.let { it ->
                 it.data.forEach { it ->
-                    it.lineup.forEach {
+                    it.lineup?.forEach {
                         playerList.add(it)
                         Log.d(TAG, "onViewCreated: $it")
                     }
                 }
             }
+            binding.progressBar.visibility = View.GONE
             playersListRecyclerView.adapter =
                 PlayersRVAdapter(requireContext(), playerList.toList())
         }
@@ -70,7 +71,7 @@ class PlayersFragment() : Fragment() {
                 val filteredList = mutableSetOf<Lineup>()
                 viewModel.recentMatches.observe(viewLifecycleOwner) { it ->
                     it?.data?.forEach { it ->
-                        it.lineup.forEach {
+                        it.lineup?.forEach {
                             if (it.fullname.contains(query!!, ignoreCase = true)) {
                                 filteredList.add(it)
                             }

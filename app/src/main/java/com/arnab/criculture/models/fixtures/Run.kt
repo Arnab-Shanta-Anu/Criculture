@@ -10,7 +10,7 @@ data class Run(
     val id: Int,
     val inning: Int,
     val overs: Double,
-    val pp1: String,
+    val pp1: String?,
     val pp2: String?,
     val pp3: @RawValue Any?,
     val resource: String,

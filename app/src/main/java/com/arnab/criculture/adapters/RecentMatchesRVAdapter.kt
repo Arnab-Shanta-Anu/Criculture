@@ -58,34 +58,47 @@ class RecentMatchesRVAdapter(
         holder.matchVenueTV.text = item.venue?.name
         holder.matchResultTV.text = item.note
         try {
-            holder.team1RunsTV.text = "${item.runs?.get(0)?.score}/${item.runs?.get(0)?.wickets}"
-            holder.team2RunsTV.text = "${item.runs?.get(1)?.score}/${item.runs?.get(1)?.wickets}"
-            holder.team1BallsTv.text = "Overs(${item.runs?.get(0)?.overs})"
-            holder.team2BallsTv.text = "Overs(${item.runs?.get(1)?.overs})"
+            if (item.runs?.get(0)?.team_id == item.localteam_id) {
+                holder.team1RunsTV.text =
+                    "${item.runs?.get(0)?.score}/${item.runs?.get(0)?.wickets}"
+                holder.team2RunsTV.text =
+                    "${item.runs?.get(1)?.score}/${item.runs?.get(1)?.wickets}"
+                holder.team1BallsTv.text = "Overs(${item.runs?.get(0)?.overs})"
+                holder.team2BallsTv.text = "Overs(${item.runs?.get(1)?.overs})"
+            } else {
+                holder.team1RunsTV.text =
+                    "${item.runs?.get(1)?.score}/${item.runs?.get(1)?.wickets}"
+                holder.team2RunsTV.text =
+                    "${item.runs?.get(0)?.score}/${item.runs?.get(0)?.wickets}"
+                holder.team1BallsTv.text = "Overs(${item.runs?.get(1)?.overs})"
+                holder.team2BallsTv.text = "Overs(${item.runs?.get(0)?.overs})"
+            }
         } catch (e: Exception) {
             Log.e(
                 TAG,
                 "onBindViewHolder: \nitem: ${item.runs}\nerror: $e"
             )
         }
-        holder.cardView.setOnClickListener {
+        holder.cardView.setOnClickListener{
             try {
-                val action = RecentFragmentDirections.actionRecentFragmentToMatchDetailsFragment(
-                    item.localteam.name,
-                    item.visitorteam.name,
-                    item.localteam.image_path,
-                    item.visitorteam.image_path,
-                    item.runs?.get(0)?.score!!,
-                    item.runs?.get(1)?.score!!,
-                    item.runs?.get(0)?.wickets!!,
-                    item.runs?.get(1)?.wickets!!,
-                    item.runs?.get(0)?.overs!!.toFloat(),
-                    item.runs?.get(1)?.overs!!.toFloat(),
-                    item.note!!,
-                    item.batting?.toTypedArray()
-                )
+                val action =
+                    RecentFragmentDirections.actionRecentFragmentToMatchDetailsFragment(
+                        item.localteam.name,
+                        item.visitorteam.name,
+                        item.localteam.image_path,
+                        item.visitorteam.image_path,
+                        item.runs?.get(0)?.score!!,
+                        item.runs?.get(1)?.score!!,
+                        item.runs?.get(0)?.wickets!!,
+                        item.runs?.get(1)?.wickets!!,
+                        item.runs?.get(0)?.overs!!.toFloat(),
+                        item.runs?.get(1)?.overs!!.toFloat(),
+                        item.note!!,
+                        item.batting?.toTypedArray(),
+                        item.bowling?.toTypedArray()
+                    )
                 findNavController(holder.itemView).navigate(action)
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.e(TAG, "onBindViewHolder: error: $e")
             }
         }

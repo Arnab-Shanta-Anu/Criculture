@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Venue(
-    val capacity: Int,
+    val capacity: Int?,
     val city: String,
     val country_id: Int,
     val floodlight: Boolean,

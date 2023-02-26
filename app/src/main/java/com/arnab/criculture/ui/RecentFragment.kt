@@ -39,10 +39,12 @@ class RecentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRecentBinding.bind(view)
         val recyclerView: RecyclerView = binding.recentMatchesRV
+        binding.progressBar.visibility = View.VISIBLE
 
         viewModel = ViewModelProvider(this)[CricultureViewModel::class.java]
         viewModel.recentMatches.observe(viewLifecycleOwner) {
             it?.let {
+                binding.progressBar.visibility = View.GONE
                 recyclerView.adapter =
                     RecentMatchesRVAdapter(requireContext(), it.data)
             }

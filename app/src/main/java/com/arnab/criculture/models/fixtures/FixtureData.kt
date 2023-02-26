@@ -19,7 +19,7 @@ data class FixtureData(
     val id: Int,
     val last_period: @RawValue Any?,
     val league_id: Int,
-    val lineup: List<Lineup>,
+    val lineup: List<Lineup>?,
     val live: Boolean?,
     val localteam: TeamData,
     val localteam_dl_data: TeamDlData?,
@@ -52,4 +52,4 @@ data class FixtureData(
     val visitorteam_id: Int,
     val weather_report: @RawValue List<Any>,
     val winner_team_id: Int?
-) : Parcelable
+): Parcelable

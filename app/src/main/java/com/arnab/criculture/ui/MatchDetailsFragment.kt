@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arnab.criculture.R
 import com.arnab.criculture.adapters.BowlingRVAdapter
-import com.arnab.criculture.adapters.MatchDetailsRVAdapter
+import com.arnab.criculture.adapters.BattingRVAdapter
 import com.arnab.criculture.adapters.SquadRVAdapter
 import com.arnab.criculture.models.fixtures.Batting
 import com.arnab.criculture.models.fixtures.Bowling
@@ -32,6 +32,7 @@ class MatchDetailsFragment : Fragment() {
     var team2Overs: Float = 0.0F
     lateinit var matchResult: String
     private lateinit var battingDetails: List<Batting>
+    private lateinit var bowlingDetails: List<Bowling>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class MatchDetailsFragment : Fragment() {
             team2Overs = it.getFloat("visitorTeamOvers", 0.0F)
             matchResult = it.getString("matchResult", "")
             battingDetails = it.getParcelableArray("battingDetails")!!.toList() as List<Batting>
+            bowlingDetails = it.getParcelableArray("bowlingDetails")!!.toList() as List<Bowling>
         }
     }
 
@@ -88,14 +90,14 @@ class MatchDetailsFragment : Fragment() {
             binding.squadLL.visibility = View.GONE
             binding.bowlingLL.visibility = View.GONE
 
-            recyclerView.adapter = MatchDetailsRVAdapter(requireContext(), battingDetails)
+            recyclerView.adapter = BattingRVAdapter(requireContext(), battingDetails)
         }
         binding.bowlingBTN.setOnClickListener {
             binding.bowlingLL.visibility = View.VISIBLE
             binding.battingLL.visibility = View.GONE
             binding.squadLL.visibility = View.GONE
 
-            recyclerView.adapter = BowlingRVAdapter(requireContext(), listOf<Bowling>())
+            recyclerView.adapter = BowlingRVAdapter(requireContext(), bowlingDetails)
         }
         binding.squadBTN.setOnClickListener {
             binding.squadLL.visibility = View.VISIBLE

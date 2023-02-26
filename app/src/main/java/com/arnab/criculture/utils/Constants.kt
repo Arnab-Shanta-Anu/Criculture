@@ -40,7 +40,7 @@ class Constants {
             "team-rankings?filter[type]=ODI&filter[gender]=women&api_token=${API_TOKEN}"
         const val T20_RANKING_WOMEN_QUERY =
             "team-rankings?filter[type]=T20&filter[gender]=women&api_token=${API_TOKEN}"
-        const val T20_FIXTURE_QUERY = "fixtures?filter[league_id]=3&page=6&include=visitorteam,localteam,scoreboards,venue&api_token=${API_TOKEN}"
+        const val T20_FIXTURE_QUERY = "fixtures?filter[league_id]=3&page=6&include=visitorteam,localteam,lineup,venue,runs,batting,manofmatch,batting.batsman,bowling,bowling.bowler,scoreboards&api_token=${API_TOKEN}"
         const val BIG_BASH_FIXTURE_QUERY = "fixtures?filter[league_id]=5&page=5&include=visitorteam,localteam,scoreboards,venue&api_token=${API_TOKEN}"
         const val CSA_T20_FIXTURE_QUERY = "fixtures?filter[league_id]=10&page=2&include=visitorteam,localteam,scoreboards,venue&api_token=${API_TOKEN}"
 

@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.models.fixtures.Batting
 
-class MatchDetailsRVAdapter(
+class BattingRVAdapter(
     val context: Context,
     val dataSet: List<Batting>
-): RecyclerView.Adapter<MatchDetailsRVAdapter.ViewHolder>() {
+): RecyclerView.Adapter<BattingRVAdapter.ViewHolder>() {
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val playerNameTV: TextView = itemView.findViewById(R.id.player_name_TV)
         val runsTV: TextView = itemView.findViewById(R.id.runs_TV)

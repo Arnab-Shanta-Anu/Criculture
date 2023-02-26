@@ -40,15 +40,15 @@ class HomeFragment : Fragment() {
         val upcomingMatchesRecyclerView: RecyclerView = view.findViewById(R.id.upcoming_match_RV)
         val viewModel = ViewModelProvider(this)[CricultureViewModel::class.java]
         val liveMatchRecyclerView: RecyclerView = view.findViewById(R.id.live_match_RV)
-
-        viewModel.allTeams.observe(viewLifecycleOwner) {
+//TODO make some dummy data
+        /*viewModel.allTeams.observe(viewLifecycleOwner) {
             it?.let {
                 liveMatchRecyclerView.adapter = TeamsRVAdapter(requireContext(), it.data)
             }
             liveMatchRecyclerView.layoutManager =
                 LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
             PagerSnapHelper().attachToRecyclerView(liveMatchRecyclerView)
-        }
+        }*/
 
         viewModel.upcomingMatches.observe(viewLifecycleOwner) {
             it?.let {

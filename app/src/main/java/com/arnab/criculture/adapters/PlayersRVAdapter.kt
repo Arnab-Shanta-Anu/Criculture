@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.arnab.criculture.R
 import com.arnab.criculture.models.fixtures.FixtureData
 import com.arnab.criculture.models.fixtures.Lineup
+import com.arnab.criculture.ui.PlayersFragmentDirections
 import com.bumptech.glide.Glide
 
 private const val TAG = "PlayersRVAdapter"
@@ -19,6 +22,7 @@ class PlayersRVAdapter(
     private val dataSet: List<Lineup>
 ): RecyclerView.Adapter<PlayersRVAdapter.ViewHolder>() {
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val cardView: CardView = itemView.findViewById(R.id.player_CV)
         val playerImage: ImageView = itemView.findViewById(R.id.player_image_IV)
         val playerName: TextView = itemView.findViewById(R.id.player_name_TV)
     }
@@ -31,9 +35,12 @@ class PlayersRVAdapter(
         val item = dataSet[position]
         Glide.with(context)
             .load(item.image_path)
-            .override(150,150)
             .into(holder.playerImage)
         holder.playerName.text = item.fullname
+        holder.cardView.setOnClickListener {
+            val action = PlayersFragmentDirections.actionPlayersFragmentToPlayerDetailsFragment(item.id)
+            findNavController(holder.itemView).navigate(action)
+        }
     }
     override fun getItemCount(): Int {
         return dataSet.size

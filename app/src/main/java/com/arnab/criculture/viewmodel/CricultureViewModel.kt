@@ -12,6 +12,7 @@ import com.arnab.criculture.models.ranking.Ranking
 import com.arnab.criculture.models.fixtures.FixtureWithLineUpandTeams
 import com.arnab.criculture.models.teams.Team
 import com.arnab.criculture.models.teams.TeamData
+import com.arnab.criculture.network.SportMonksApi
 import com.arnab.criculture.repository.CricultureRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -35,9 +36,12 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
     val _odiRankingMen = MutableLiveData<Ranking>()
     val _t20RankingMen = MutableLiveData<Ranking>()
 
-    val _testRankingWomen = MutableLiveData<Ranking>()
     val _odiRankingWomen = MutableLiveData<Ranking>()
     val _t20RankingWomen = MutableLiveData<Ranking>()
+
+    val _t20FixtureData = MutableLiveData<FixtureWithLineUpandTeams>()
+    val _bigBashFixtureData = MutableLiveData<FixtureWithLineUpandTeams>()
+    val _csaFixtureData = MutableLiveData<FixtureWithLineUpandTeams>()
 
     private val cricultureRepository: CricultureRepository
 
@@ -120,6 +124,13 @@ class CricultureViewModel(application: Application) : AndroidViewModel(applicati
             } catch (e: CancellationException) {
                 Log.e(TAG, "addTeam: Error: $e")
             }
+        }
+    }
+    fun getLeagueFixture(){
+        viewModelScope.launch {
+            _t20FixtureData.postValue(SportMonksApi.retrofitService.getT20Fixture())
+            _bigBashFixtureData.postValue(SportMonksApi.retrofitService.getBBashFixture())
+            _csaFixtureData.postValue(SportMonksApi.retrofitService.getCsaFixture())
         }
     }
 }

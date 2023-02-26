@@ -23,8 +23,6 @@ class MoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val playersTextView: TextView = view.findViewById(R.id.player_TV)
         val teamsTextView: TextView = view.findViewById(R.id.teams_TV)
-        val scheduleTextView: TextView = view.findViewById(R.id.schedule_TV)
-        val recordsTextView: TextView = view.findViewById(R.id.records_TV)
         val menRankingTextView: TextView = view.findViewById(R.id.men_ranking_TV)
         val womenRankingTextView: TextView = view.findViewById(R.id.women_ranking_TV)
 
@@ -35,12 +33,6 @@ class MoreFragment : Fragment() {
         teamsTextView.setOnClickListener {
             val action = MoreFragmentDirections.actionMoreFragmentToTeamsFragment()
             findNavController().navigate(action)
-        }
-        scheduleTextView.setOnClickListener {
-
-        }
-        recordsTextView.setOnClickListener {
-
         }
         menRankingTextView.setOnClickListener {
             val action = MoreFragmentDirections.actionMoreFragmentToMenRankingFragment()
