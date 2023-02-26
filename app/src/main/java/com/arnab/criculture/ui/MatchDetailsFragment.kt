@@ -33,6 +33,7 @@ class MatchDetailsFragment : Fragment() {
     lateinit var matchResult: String
     private lateinit var battingDetails: List<Batting>
     private lateinit var bowlingDetails: List<Bowling>
+    private lateinit var squadDetails: List<Lineup>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,7 @@ class MatchDetailsFragment : Fragment() {
             matchResult = it.getString("matchResult", "")
             battingDetails = it.getParcelableArray("battingDetails")!!.toList() as List<Batting>
             bowlingDetails = it.getParcelableArray("bowlingDetails")!!.toList() as List<Bowling>
+            squadDetails = it.getParcelableArray("squadDetails")!!.toList() as List<Lineup>
         }
     }
 
@@ -100,11 +102,11 @@ class MatchDetailsFragment : Fragment() {
             recyclerView.adapter = BowlingRVAdapter(requireContext(), bowlingDetails)
         }
         binding.squadBTN.setOnClickListener {
-            binding.squadLL.visibility = View.VISIBLE
+            binding.squadLL.visibility = View.GONE
             binding.battingLL.visibility = View.GONE
             binding.bowlingLL.visibility = View.GONE
 
-            recyclerView.adapter = SquadRVAdapter(requireContext(), listOf<Lineup>())
+            recyclerView.adapter = SquadRVAdapter(requireContext(), squadDetails)
         }
     }
 }

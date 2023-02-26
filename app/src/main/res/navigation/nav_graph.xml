@@ -104,6 +104,10 @@
             android:name="bowlingDetails"
             app:argType="com.arnab.criculture.models.fixtures.Bowling[]"
             app:nullable="true" />
+        <argument
+            android:name="squadDetails"
+            app:argType="com.arnab.criculture.models.fixtures.Lineup[]"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/playerDetailsFragment"

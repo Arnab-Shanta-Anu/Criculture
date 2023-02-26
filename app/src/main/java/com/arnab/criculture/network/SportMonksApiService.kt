@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -63,6 +64,13 @@ interface SportMonksApiService {
 
     @GET(Constants.CSA_T20_FIXTURE_QUERY)
     suspend fun getCsaFixture(): FixtureWithLineUpandTeams
+
+    @GET("players")
+    suspend fun getPlayerCareer(
+        @Query("PLAYER_ID") playerId: Int,
+        @Query("include") career: String = "career",
+        @Query("api_token") api_token: String = Constants.API_TOKEN
+    )
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

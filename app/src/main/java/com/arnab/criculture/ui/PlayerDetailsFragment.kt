@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import com.arnab.criculture.R
 
 class PlayerDetailsFragment : Fragment() {
-
+    var playerId: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            playerId = it.getInt("playerId")
         }
     }
 
@@ -26,5 +26,6 @@ class PlayerDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 }

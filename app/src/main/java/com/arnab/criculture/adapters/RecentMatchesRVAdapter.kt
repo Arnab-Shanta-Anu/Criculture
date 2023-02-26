@@ -95,7 +95,8 @@ class RecentMatchesRVAdapter(
                         item.runs?.get(1)?.overs!!.toFloat(),
                         item.note!!,
                         item.batting?.toTypedArray(),
-                        item.bowling?.toTypedArray()
+                        item.bowling?.toTypedArray(),
+                        item.lineup?.toTypedArray()
                     )
                 findNavController(holder.itemView).navigate(action)
             } catch (e: Exception) {
