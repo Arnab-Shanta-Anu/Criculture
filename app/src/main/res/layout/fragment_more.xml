@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MoreFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/player_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Browse Players"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/md_theme_dark_background"
+                android:background="@color/md_theme_dark_onPrimaryContainer"/>
+
+            <TextView
+                android:id="@+id/teams_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Browse Team"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/md_theme_dark_background"
+                android:background="@color/md_theme_dark_onPrimaryContainer"/>
+
+            <TextView
+                android:id="@+id/men_ranking_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Men Ranking"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/md_theme_dark_background"
+                android:background="@color/md_theme_dark_onPrimaryContainer"/>
+            <TextView
+                android:id="@+id/women_ranking_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Women Ranking"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/md_theme_dark_background"
+                android:background="@color/md_theme_dark_onPrimaryContainer"/>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

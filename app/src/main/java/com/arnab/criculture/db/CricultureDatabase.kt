@@ -25,7 +25,7 @@ abstract class CricultureDatabase:RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     CricultureDatabase::class.java,
-                    "news_database"
+                    "criculture_database"
                 ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance

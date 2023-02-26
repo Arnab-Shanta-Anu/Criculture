@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.arnab.criculture.ui.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/fixtureFragment"
+        android:name="com.arnab.criculture.ui.FixtureFragment"
+        android:label="Fixtures"
+        tools:layout="@layout/fragment_fixture" />
+    <fragment
+        android:id="@+id/recentFragment"
+        android:name="com.arnab.criculture.ui.RecentFragment"
+        android:label="Recent Matches"
+        tools:layout="@layout/fragment_recent" >
+        <action
+            android:id="@+id/action_recentFragment_to_matchDetailsFragment"
+            app:destination="@id/matchDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.arnab.criculture.ui.MoreFragment"
+        android:label="More"
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_playersFragment"
+            app:destination="@id/playersFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_womenRankingFragment"
+            app:destination="@id/womenRankingFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_menRankingFragment"
+            app:destination="@id/menRankingFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_teamsFragment"
+            app:destination="@id/teamsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playersFragment"
+        android:name="com.arnab.criculture.ui.PlayersFragment"
+        android:label="Players"
+        tools:layout="@layout/fragment_players" >
+        <action
+            android:id="@+id/action_playersFragment_to_playerDetailsFragment"
+            app:destination="@id/playerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menRankingFragment"
+        android:name="com.arnab.criculture.ui.MenRankingFragment"
+        android:label="Men Ranking"
+        tools:layout="@layout/fragment_men_ranking" />
+    <fragment
+        android:id="@+id/womenRankingFragment"
+        android:name="com.arnab.criculture.ui.WomenRankingFragment"
+        android:label="Women Ranking"
+        tools:layout="@layout/fragment_men_ranking" />
+    <fragment
+        android:id="@+id/teamsFragment"
+        android:name="com.arnab.criculture.ui.TeamsFragment"
+        android:label="Teams"
+        tools:layout="@layout/fragment_teams" />
+    <fragment
+        android:id="@+id/matchDetailsFragment"
+        android:name="com.arnab.criculture.ui.MatchDetailsFragment"
+        android:label="Match Details"
+        tools:layout="@layout/fragment_match_details" >
+        <argument android:name="localTeamName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="visitorTeamName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="localTeamImgPath"
+            app:argType="string"/>
+        <argument android:name="visitorTeamImgPath"
+            app:argType="string"/>
+        <argument android:name="localTeamRuns"
+            app:argType="integer" />
+        <argument android:name="visitorTeamRuns"
+            app:argType="integer" />
+        <argument android:name="localTeamWickets"
+            app:argType="integer" />
+        <argument android:name="visitorTeamWickets"
+            app:argType="integer" />
+        <argument android:name="localTeamOvers"
+            app:argType="float" />
+        <argument android:name="visitorTeamOvers"
+            app:argType="float" />
+        <argument android:name="matchResult"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument
+            android:name="battingDetails"
+            app:argType="com.arnab.criculture.models.fixtures.Batting[]"
+            app:nullable="true" />
+        <argument
+            android:name="bowlingDetails"
+            app:argType="com.arnab.criculture.models.fixtures.Bowling[]"
+            app:nullable="true" />
+        <argument
+            android:name="squadDetails"
+            app:argType="com.arnab.criculture.models.fixtures.Lineup[]"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerDetailsFragment"
+        android:name="com.arnab.criculture.ui.PlayerDetailsFragment"
+        android:label="Player Details"
+        tools:layout="@layout/fragment_player_details" >
+        <argument
+            android:name="playerId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

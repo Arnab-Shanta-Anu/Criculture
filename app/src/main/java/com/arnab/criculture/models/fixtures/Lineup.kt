@@ -1,8 +1,13 @@
-package com.arnab.criculture.models.players
+package com.arnab.criculture.models.fixtures
 
-data class Data(
-    val battingstyle: String,
-    val bowlingstyle: String,
+import android.os.Parcelable
+import com.arnab.criculture.models.Position
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Lineup(
+    val battingstyle: String?,
+    val bowlingstyle: String?,
     val country_id: Int,
     val dateofbirth: String,
     val firstname: String,
@@ -11,7 +16,8 @@ data class Data(
     val id: Int,
     val image_path: String,
     val lastname: String,
+    val lineup: LineupX,
     val position: Position,
     val resource: String,
     val updated_at: String
-)
+): Parcelable

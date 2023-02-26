@@ -1,13 +1,14 @@
-package com.arnab.criculture.models.fixtures
+package com.arnab.criculture.models.ranking
 
-data class Data(
+data class Team(
     val code: String,
     val country_id: Int,
-    val fixtures: List<FixtureX>,
     val id: Int,
     val image_path: String,
     val name: String,
     val national_team: Boolean,
+    val position: Int,
+    val ranking: RankingX,
     val resource: String,
     val updated_at: String
 )

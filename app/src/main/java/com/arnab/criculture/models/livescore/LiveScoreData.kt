@@ -1,11 +1,11 @@
-package com.arnab.criculture.models.fixtures
+package com.arnab.criculture.models.livescore
 
 import com.arnab.criculture.models.TeamDlData
 
-data class FixtureX(
+data class LiveScoreData(
     val draw_noresult: Any,
-    val elected: Any,
-    val first_umpire_id: Any,
+    val elected: String,
+    val first_umpire_id: Int,
     val follow_on: Boolean,
     val id: Int,
     val last_period: Any,
@@ -16,20 +16,20 @@ data class FixtureX(
     val man_of_match_id: Any,
     val man_of_series_id: Any,
     val note: String,
-    val referee_id: Any,
+    val referee_id: Int,
     val resource: String,
     val round: String,
     val rpc_overs: Any,
     val rpc_target: Any,
     val season_id: Int,
-    val second_umpire_id: Any,
+    val second_umpire_id: Int,
     val stage_id: Int,
     val starting_at: String,
     val status: String,
     val super_over: Boolean,
-    val toss_won_team_id: Any,
-    val total_overs_played: Any,
-    val tv_umpire_id: Any,
+    val toss_won_team_id: Int,
+    val total_overs_played: Int,
+    val tv_umpire_id: Int,
     val type: String,
     val venue_id: Int,
     val visitorteam_dl_data: TeamDlData,

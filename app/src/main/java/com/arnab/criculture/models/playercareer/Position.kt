@@ -1,4 +1,4 @@
-package com.arnab.criculture.models.players
+package com.arnab.criculture.models.playercareer
 
 data class Position(
     val id: Int,
